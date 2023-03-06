@@ -15,11 +15,13 @@ class Form extends Component {
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick } = this.props;
+
     return (
-      <div className="cardForm">
+      <form className="cardForm">
         <label>
           <input
             type="text"
+            name="name"
             data-testid="name-input"
             value={ cardName }
             onChange={ onInputChange }
@@ -29,6 +31,7 @@ class Form extends Component {
         <label>
           <input
             type="textarea"
+            name="description"
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
@@ -38,6 +41,7 @@ class Form extends Component {
         <label>
           <input
             type="number"
+            name="attr1"
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
@@ -47,6 +51,7 @@ class Form extends Component {
         <label>
           <input
             type="number"
+            name="attr2"
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
@@ -56,6 +61,7 @@ class Form extends Component {
         <label>
           <input
             type="number"
+            name="attr3"
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
@@ -65,6 +71,7 @@ class Form extends Component {
         <label>
           <input
             type="text"
+            name="imageURL"
             data-testid="image-input"
             value={ cardImage }
             onChange={ onInputChange }
@@ -73,6 +80,7 @@ class Form extends Component {
 
         <label>
           <select
+            name="rare"
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
@@ -86,6 +94,7 @@ class Form extends Component {
         <label>
           <input
             type="checkbox"
+            name="trunfo"
             data-testid="trunfo-input"
             checked={ cardTrunfo }
             onChange={ onInputChange }
@@ -99,7 +108,7 @@ class Form extends Component {
         >
           Salvar
         </button>
-      </div>
+      </form>
     );
   }
 }

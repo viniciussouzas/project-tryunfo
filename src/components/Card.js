@@ -15,9 +15,9 @@ class Card extends Component {
 
     return (
       <>
-        <p data-testid="name-card">
+        <h1 data-testid="name-card">
           {cardName}
-        </p>
+        </h1>
 
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
 
@@ -25,21 +25,21 @@ class Card extends Component {
           {cardDescription}
         </p>
 
-        <p data-testid="attr1-card">
+        <h3 data-testid="attr1-card">
           {cardAttr1}
-        </p>
+        </h3>
 
-        <p data-testid="attr2-card">
+        <h3 data-testid="attr2-card">
           {cardAttr2}
-        </p>
+        </h3>
 
-        <p data-testid="attr3-card">
+        <h3 data-testid="attr3-card">
           {cardAttr3}
-        </p>
+        </h3>
 
-        <p data-testid="rare-card">
+        <h2 data-testid="rare-card">
           {cardRare}
-        </p>
+        </h2>
 
         {
           cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p>
