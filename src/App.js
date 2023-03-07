@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
-import CardList from './components/CardList';
 import Form from './components/Form';
+import RemoveButton from './components/RemoveButton';
 
 const MIN_LENGTH = 0;
 const MAX_POINTS_EACH = 90;
@@ -51,6 +51,20 @@ class App extends React.Component {
       rare: 'normal',
       trunfo: false,
     });
+  };
+
+  removeCard = (indexOfCard) => {
+    this.setState((previousState) => ({
+      cardsList: previousState.cardsList.filter((_card, index) => index !== indexOfCard),
+    }));
+
+    const { cardsList } = this.state;
+
+    if (cardsList.some((card) => !card.hasTrunfo)) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
   };
 
   render() {
@@ -108,7 +122,22 @@ class App extends React.Component {
         />
 
         <h1>Todas as Cartas</h1>
-        <CardList cardsList={ cardsList } />
+        {cardsList.map((card, indexOfCard) => (
+          <>
+            <Card
+              key={ card.name }
+              cardName={ card.name }
+              cardDescription={ card.description }
+              cardAttr1={ card.attr1 }
+              cardAttr2={ card.attr2 }
+              cardAttr3={ card.attr3 }
+              cardImage={ card.imageURL }
+              cardRare={ card.rare }
+              cardTrunfo={ card.trunfo }
+            />
+            <RemoveButton removeCard={ this.removeCard } indexOfCard={ indexOfCard } />
+          </>
+        ))}
       </div>
     );
   }
