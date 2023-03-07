@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import CardList from './components/CardList';
 import Form from './components/Form';
 
 const MIN_LENGTH = 0;
@@ -62,6 +63,7 @@ class App extends React.Component {
       rare,
       trunfo,
       hasTrunfo,
+      cardsList,
     } = this.state;
 
     const buttonDisabled = (name.length <= MIN_LENGTH)
@@ -77,6 +79,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo</h1>
+
         <Form
           cardName={ name }
           cardDescription={ description }
@@ -91,6 +94,7 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
           hasTrunfo={ verifyHasTrunfo }
         />
+
         <Card
           cardName={ name }
           cardDescription={ description }
@@ -102,6 +106,9 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
           onInputChange={ this.onInputChange }
         />
+
+        <h1>Todas as Cartas</h1>
+        <CardList cardsList={ cardsList } />
       </div>
     );
   }
