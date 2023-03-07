@@ -16,6 +16,7 @@ class App extends React.Component {
     imageURL: '',
     rare: '',
     trunfo: false,
+    cardsList: [],
   };
 
   onInputChange = ({ target }) => {
@@ -25,6 +26,27 @@ class App extends React.Component {
     this.setState(({
       [name]: value,
     }));
+  };
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+
+    const newCardToAdd = { ...this.state };
+
+    this.setState((currentState) => ({
+      cardsList: [...currentState.cardsList, newCardToAdd],
+    }));
+
+    this.setState({
+      name: '',
+      description: '',
+      attr1: 0,
+      attr2: 0,
+      attr3: 0,
+      imageURL: '',
+      rare: 'normal',
+      trunfo: false,
+    });
   };
 
   render() {
@@ -60,6 +82,7 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ buttonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ name }
