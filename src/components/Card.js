@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Card.css';
 
 class Card extends Component {
   render() {
@@ -14,7 +15,7 @@ class Card extends Component {
     } = this.props;
 
     return (
-      <>
+      <section className="cardStyles">
         <h1 data-testid="name-card">
           {cardName}
         </h1>
@@ -44,7 +45,7 @@ class Card extends Component {
         {
           cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p>
         }
-      </>
+      </section>
     );
   }
 }

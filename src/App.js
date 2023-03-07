@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 import RemoveButton from './components/RemoveButton';
+import './styles/App.css';
 
 const MIN_LENGTH = 0;
 const MAX_POINTS_EACH = 90;
@@ -91,53 +92,56 @@ class App extends React.Component {
     const verifyHasTrunfo = (hasTrunfo === true);
 
     return (
-      <div>
+      <div className="globalApp">
         <h1>Tryunfo</h1>
+        <section className="formCardPreview">
+          <Form
+            cardName={ name }
+            cardDescription={ description }
+            cardAttr1={ attr1 }
+            cardAttr2={ attr2 }
+            cardAttr3={ attr3 }
+            cardImage={ imageURL }
+            cardRare={ rare }
+            cardTrunfo={ trunfo }
+            onInputChange={ this.onInputChange }
+            isSaveButtonDisabled={ buttonDisabled }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            hasTrunfo={ verifyHasTrunfo }
+          />
 
-        <Form
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ imageURL }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
-          onInputChange={ this.onInputChange }
-          isSaveButtonDisabled={ buttonDisabled }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          hasTrunfo={ verifyHasTrunfo }
-        />
+          <Card
+            cardName={ name }
+            cardDescription={ description }
+            cardAttr1={ attr1 }
+            cardAttr2={ attr2 }
+            cardAttr3={ attr3 }
+            cardImage={ imageURL }
+            cardRare={ rare }
+            cardTrunfo={ trunfo }
+            onInputChange={ this.onInputChange }
+          />
+        </section>
 
-        <Card
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr1 }
-          cardAttr2={ attr2 }
-          cardAttr3={ attr3 }
-          cardImage={ imageURL }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
-          onInputChange={ this.onInputChange }
-        />
-
-        <h1>Todas as Cartas</h1>
-        {cardsList.map((card, indexOfCard) => (
-          <>
-            <Card
-              key={ card.name }
-              cardName={ card.name }
-              cardDescription={ card.description }
-              cardAttr1={ card.attr1 }
-              cardAttr2={ card.attr2 }
-              cardAttr3={ card.attr3 }
-              cardImage={ card.imageURL }
-              cardRare={ card.rare }
-              cardTrunfo={ card.trunfo }
-            />
-            <RemoveButton removeCard={ this.removeCard } indexOfCard={ indexOfCard } />
-          </>
-        ))}
+        <section className="cardRendered">
+          <h1>Todas as Cartas</h1>
+          {cardsList.map((card, indexOfCard) => (
+            <>
+              <Card
+                key={ card.name }
+                cardName={ card.name }
+                cardDescription={ card.description }
+                cardAttr1={ card.attr1 }
+                cardAttr2={ card.attr2 }
+                cardAttr3={ card.attr3 }
+                cardImage={ card.imageURL }
+                cardRare={ card.rare }
+                cardTrunfo={ card.trunfo }
+              />
+              <RemoveButton removeCard={ this.removeCard } indexOfCard={ indexOfCard } />
+            </>
+          ))}
+        </section>
       </div>
     );
   }
