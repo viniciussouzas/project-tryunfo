@@ -17,6 +17,7 @@ class App extends React.Component {
     rare: '',
     trunfo: false,
     cardsList: [],
+    hasTrunfo: false,
   };
 
   onInputChange = ({ target }) => {
@@ -32,6 +33,8 @@ class App extends React.Component {
     event.preventDefault();
 
     const newCardToAdd = { ...this.state };
+
+    if (newCardToAdd.trunfo === true) this.state.hasTrunfo = true;
 
     this.setState((currentState) => ({
       cardsList: [...currentState.cardsList, newCardToAdd],
@@ -58,6 +61,7 @@ class App extends React.Component {
       imageURL,
       rare,
       trunfo,
+      hasTrunfo,
     } = this.state;
 
     const buttonDisabled = (name.length <= MIN_LENGTH)
@@ -67,6 +71,8 @@ class App extends React.Component {
     || (Number(attr2) > MAX_POINTS_EACH || Number(attr2) < MIN_LENGTH)
     || (Number(attr3) > MAX_POINTS_EACH || Number(attr3) < MIN_LENGTH)
     || Number(attr1) + Number(attr2) + Number(attr3) > ATTR_TOTAL;
+
+    const verifyHasTrunfo = (hasTrunfo === true);
 
     return (
       <div>
@@ -83,6 +89,7 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ buttonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+          hasTrunfo={ verifyHasTrunfo }
         />
         <Card
           cardName={ name }

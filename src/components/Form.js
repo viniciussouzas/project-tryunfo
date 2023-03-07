@@ -91,16 +91,15 @@ class Form extends Component {
           </select>
         </label>
 
-        <label>
-          <input
+        {
+          hasTrunfo === true ? <p>Você já tem um Super Trunfo em seu baralho</p> : <input
             type="checkbox"
             name="trunfo"
             data-testid="trunfo-input"
             checked={ cardTrunfo }
             onChange={ onInputChange }
           />
-        </label>
-
+        }
         <button
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
