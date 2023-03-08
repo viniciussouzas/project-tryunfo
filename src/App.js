@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import FilterName from './components/FilterName';
 import Form from './components/Form';
 import RemoveButton from './components/RemoveButton';
 import './styles/App.css';
@@ -20,6 +21,7 @@ class App extends React.Component {
     trunfo: false,
     cardsList: [],
     hasTrunfo: false,
+    inputSearch: '',
   };
 
   onInputChange = ({ target }) => {
@@ -68,6 +70,12 @@ class App extends React.Component {
     }
   };
 
+  searchByName = ({ target }) => {
+    this.setState({
+      inputSearch: target.value,
+    });
+  };
+
   render() {
     const { name,
       description,
@@ -79,6 +87,7 @@ class App extends React.Component {
       trunfo,
       hasTrunfo,
       cardsList,
+      inputSearch,
     } = this.state;
 
     const buttonDisabled = (name.length <= MIN_LENGTH)
@@ -90,6 +99,12 @@ class App extends React.Component {
     || Number(attr1) + Number(attr2) + Number(attr3) > ATTR_TOTAL;
 
     const verifyHasTrunfo = (hasTrunfo === true);
+
+    const cardsFiltered = cardsList.filter((card) => {
+      const nameOfCard = card.name;
+
+      return nameOfCard.toUpperCase().includes(inputSearch.toUpperCase());
+    });
 
     return (
       <div className="globalApp">
@@ -125,7 +140,11 @@ class App extends React.Component {
 
         <section className="cardRendered">
           <h1>Todas as Cartas</h1>
-          {cardsList.map((card, indexOfCard) => (
+          <p>
+            Filtrar por:
+            <FilterName inputSearch={ inputSearch } searchByName={ this.searchByName } />
+          </p>
+          {cardsFiltered.map((card, indexOfCard) => (
             <>
               <Card
                 key={ card.name }
