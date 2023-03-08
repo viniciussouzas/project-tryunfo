@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
-import FilterName from './components/FilterName';
+import FilterCards from './components/FilterCards';
 import Form from './components/Form';
 import RemoveButton from './components/RemoveButton';
 import './styles/App.css';
@@ -21,7 +21,8 @@ class App extends React.Component {
     trunfo: false,
     cardsList: [],
     hasTrunfo: false,
-    inputSearch: '',
+    inputSearchName: '',
+    inputSearchSelect: 'todas',
   };
 
   onInputChange = ({ target }) => {
@@ -72,7 +73,13 @@ class App extends React.Component {
 
   searchByName = ({ target }) => {
     this.setState({
-      inputSearch: target.value,
+      inputSearchName: target.value,
+    });
+  };
+
+  searchByRare = ({ target }) => {
+    this.setState({
+      inputSearchSelect: target.value,
     });
   };
 
@@ -87,7 +94,8 @@ class App extends React.Component {
       trunfo,
       hasTrunfo,
       cardsList,
-      inputSearch,
+      inputSearchName,
+      inputSearchSelect,
     } = this.state;
 
     const buttonDisabled = (name.length <= MIN_LENGTH)
@@ -100,10 +108,18 @@ class App extends React.Component {
 
     const verifyHasTrunfo = (hasTrunfo === true);
 
-    const cardsFiltered = cardsList.filter((card) => {
+    const filteredByName = cardsList.filter((card) => {
       const nameOfCard = card.name;
 
-      return nameOfCard.toUpperCase().includes(inputSearch.toUpperCase());
+      return nameOfCard.toUpperCase().includes(inputSearchName.toUpperCase());
+    });
+
+    const filteredByRarity = filteredByName.filter((card) => {
+      const rarityOfCard = card.rare;
+
+      if (inputSearchSelect === 'todas') return filteredByName;
+
+      return rarityOfCard === inputSearchSelect;
     });
 
     return (
@@ -142,9 +158,14 @@ class App extends React.Component {
           <h1>Todas as Cartas</h1>
           <p>
             Filtrar por:
-            <FilterName inputSearch={ inputSearch } searchByName={ this.searchByName } />
+            <FilterCards
+              inputSearchName={ inputSearchName }
+              searchByName={ this.searchByName }
+              inputSearchSelect={ inputSearchSelect }
+              searchByRare={ this.searchByRare }
+            />
           </p>
-          {cardsFiltered.map((card, indexOfCard) => (
+          {filteredByRarity.map((card, indexOfCard) => (
             <>
               <Card
                 key={ card.name }
