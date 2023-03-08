@@ -22,28 +22,28 @@ class Card extends Component {
 
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
 
-        <p data-testid="description-card">
+        <p data-testid="description-card" placeholder="Descrição" className="">
           {cardDescription}
         </p>
 
-        <h3 data-testid="attr1-card">
-          {cardAttr1}
-        </h3>
+        <h4 data-testid="attr1-card">
+          {`Attr1: ${cardAttr1}`}
+        </h4>
 
-        <h3 data-testid="attr2-card">
-          {cardAttr2}
-        </h3>
+        <h4 data-testid="attr2-card">
+          {`Attr2: ${cardAttr2}`}
+        </h4>
 
-        <h3 data-testid="attr3-card">
-          {cardAttr3}
-        </h3>
+        <h4 data-testid="attr3-card">
+          {`Attr3: ${cardAttr3}`}
+        </h4>
 
-        <h2 data-testid="rare-card">
-          {cardRare}
-        </h2>
+        <h5 data-testid="rare-card">
+          {`Raridade: ${cardRare}`}
+        </h5>
 
         {
-          cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p>
+          cardTrunfo === true && <h3 data-testid="trunfo-card">Super Trunfo</h3>
         }
       </section>
     );

@@ -26,6 +26,7 @@ class Form extends Component {
             data-testid="name-input"
             value={ cardName }
             onChange={ onInputChange }
+            placeholder="Nome da Carta"
           />
         </label>
 
@@ -36,6 +37,7 @@ class Form extends Component {
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
+            placeholder="Descrição"
           />
         </label>
 
@@ -46,6 +48,7 @@ class Form extends Component {
             data-testid="attr1-input"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            placeholder="Atributo 1"
           />
         </label>
 
@@ -56,6 +59,7 @@ class Form extends Component {
             data-testid="attr2-input"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            placeholder="Atributo 2"
           />
         </label>
 
@@ -66,6 +70,7 @@ class Form extends Component {
             data-testid="attr3-input"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            placeholder="Atributo 3"
           />
         </label>
 
@@ -76,10 +81,12 @@ class Form extends Component {
             data-testid="image-input"
             value={ cardImage }
             onChange={ onInputChange }
+            placeholder="Insira URL da Imagem"
           />
         </label>
 
         <label>
+          Raridade:
           <select
             name="rare"
             data-testid="rare-input"

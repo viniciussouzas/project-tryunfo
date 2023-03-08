@@ -1,0 +1,18 @@
+.filterInputs {
+  display: flex;
+  flex-direction: row;
+}
+
+.filterInputs label {
+  display: flex;
+  margin-left: 15px;
+  color: #e63535;
+}
+
+.filterInputs label > select {
+  margin-left: 5px;
+}
+
+.filterInputs label > input {
+  margin-left: 5px;
+}

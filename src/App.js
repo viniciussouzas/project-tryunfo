@@ -165,10 +165,13 @@ class App extends React.Component {
           />
         </section>
 
-        <section className="cardRendered">
+        <section className="cardContainer">
+          <hr />
           <h1>Todas as Cartas</h1>
-          <p>
-            Filtrar por:
+          <div className="filterContainer">
+            <p>
+              Filtrar por:
+            </p>
             <FilterCards
               inputSearchName={ inputSearchName }
               searchByName={ this.searchByName }
@@ -177,23 +180,29 @@ class App extends React.Component {
               inputSearchTrunfo={ inputSearchTrunfo }
               searchByTrunfo={ this.searchByTrunfo }
             />
-          </p>
-          {filteredByRarityOrTrunfo.map((card, indexOfCard) => (
-            <>
-              <Card
-                key={ card.name }
-                cardName={ card.name }
-                cardDescription={ card.description }
-                cardAttr1={ card.attr1 }
-                cardAttr2={ card.attr2 }
-                cardAttr3={ card.attr3 }
-                cardImage={ card.imageURL }
-                cardRare={ card.rare }
-                cardTrunfo={ card.trunfo }
-              />
-              <RemoveButton removeCard={ this.removeCard } indexOfCard={ indexOfCard } />
-            </>
-          ))}
+          </div>
+
+          <div className="cardRendered">
+            {filteredByRarityOrTrunfo.map((card, indexOfCard) => (
+              <div key={ card.name } className="deckContainer">
+                <Card
+                  key={ card.name }
+                  cardName={ card.name }
+                  cardDescription={ card.description }
+                  cardAttr1={ card.attr1 }
+                  cardAttr2={ card.attr2 }
+                  cardAttr3={ card.attr3 }
+                  cardImage={ card.imageURL }
+                  cardRare={ card.rare }
+                  cardTrunfo={ card.trunfo }
+                />
+                <RemoveButton
+                  removeCard={ this.removeCard }
+                  indexOfCard={ indexOfCard }
+                />
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     );

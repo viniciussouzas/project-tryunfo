@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/FilterCards.css';
 
 class FilterCards extends Component {
   render() {
@@ -8,15 +9,17 @@ class FilterCards extends Component {
       inputSearchTrunfo, searchByTrunfo } = this.props;
 
     return (
-      <>
-        <input
-          type="text"
-          data-testid="name-filter"
-          placeholder="Nome da carta"
-          value={ inputSearchName }
-          onChange={ searchByName }
-          disabled={ inputSearchTrunfo }
-        />
+      <div className="filterInputs">
+        <label>
+          <input
+            type="text"
+            data-testid="name-filter"
+            placeholder="Nome da carta"
+            value={ inputSearchName }
+            onChange={ searchByName }
+            disabled={ inputSearchTrunfo }
+          />
+        </label>
 
         <label>
           <h5>Raridade da Carta - </h5>
@@ -42,7 +45,7 @@ class FilterCards extends Component {
             checked={ inputSearchTrunfo }
           />
         </label>
-      </>
+      </div>
     );
   }
 }
