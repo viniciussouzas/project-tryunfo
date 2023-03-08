@@ -23,6 +23,7 @@ class App extends React.Component {
     hasTrunfo: false,
     inputSearchName: '',
     inputSearchSelect: 'todas',
+    inputSearchTrunfo: false,
   };
 
   onInputChange = ({ target }) => {
@@ -83,6 +84,12 @@ class App extends React.Component {
     });
   };
 
+  searchByTrunfo = ({ target }) => {
+    this.setState({
+      inputSearchTrunfo: target.checked,
+    });
+  };
+
   render() {
     const { name,
       description,
@@ -96,6 +103,7 @@ class App extends React.Component {
       cardsList,
       inputSearchName,
       inputSearchSelect,
+      inputSearchTrunfo,
     } = this.state;
 
     const buttonDisabled = (name.length <= MIN_LENGTH)
@@ -114,8 +122,11 @@ class App extends React.Component {
       return nameOfCard.toUpperCase().includes(inputSearchName.toUpperCase());
     });
 
-    const filteredByRarity = filteredByName.filter((card) => {
+    const filteredByRarityOrTrunfo = filteredByName.filter((card) => {
       const rarityOfCard = card.rare;
+      const trunfoCard = card.trunfo;
+
+      if (inputSearchTrunfo) return trunfoCard;
 
       if (inputSearchSelect === 'todas') return filteredByName;
 
@@ -163,9 +174,11 @@ class App extends React.Component {
               searchByName={ this.searchByName }
               inputSearchSelect={ inputSearchSelect }
               searchByRare={ this.searchByRare }
+              inputSearchTrunfo={ inputSearchTrunfo }
+              searchByTrunfo={ this.searchByTrunfo }
             />
           </p>
-          {filteredByRarity.map((card, indexOfCard) => (
+          {filteredByRarityOrTrunfo.map((card, indexOfCard) => (
             <>
               <Card
                 key={ card.name }
