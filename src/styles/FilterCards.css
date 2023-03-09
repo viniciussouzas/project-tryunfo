@@ -4,9 +4,9 @@
 }
 
 .filterInputs label {
+  color: #e63535;
   display: flex;
   margin-left: 15px;
-  color: #e63535;
 }
 
 .filterInputs label > select {
